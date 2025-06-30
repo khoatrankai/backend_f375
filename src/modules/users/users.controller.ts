@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFiles } from "@nestjs/common"
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFiles, Query } from "@nestjs/common"
 import { UsersService } from "./users.service";
 import { AnyFilesInterceptor } from "@nestjs/platform-express";
 // import { storageConfig } from "src/lib/multer-upload";
@@ -36,6 +36,11 @@ export class UsersController {
   @Get()
   findAll() {
     return this.usersService.findAll()
+  }
+
+  @Get('login')
+  login(@Query() data:any) {
+    return this.usersService.login(data)
   }
 
   @Get(':id')

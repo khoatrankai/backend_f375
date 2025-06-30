@@ -37,6 +37,18 @@ export class UsersService {
     }
   }
 
+  async login(data:any) {
+    const users = await this.usersRepository.findOne({
+      where: { username:In([data?.username]),password:In([data?.password]) },
+      relations: ["group", "historiesLeader"],
+    })
+    return {
+      statusCode: users?HttpStatus.OK:HttpStatus.BAD_REQUEST,
+      message: users?"Login success":"Login fail",
+      data: users,
+    }
+  }
+
   async findOne(id: string) {
     const user = await this.usersRepository.findOne({
       where: { id },
