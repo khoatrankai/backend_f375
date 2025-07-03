@@ -19,7 +19,7 @@ export class News {
   @Column({nullable:true, length: 500 })
   title: string
 
-  @Column({ type: 'nvarchar', length: 'max' })
+  @Column({ nullable:true,type: 'nvarchar', length: 'max' })
   excerpt: string
 
   @Column({ nullable: true })
@@ -34,10 +34,11 @@ export class News {
   @Column({nullable:true, length: 50 })
   time: string
 
-  @Column({ default: 0 })
+  @Column({nullable:true, default: 0 })
   views: number
 
   @Column({
+    nullable:true,
     type: "nvarchar",
     enum: NewsType,
     default: NewsType.TRONG_NUOC,
@@ -73,6 +74,7 @@ export class News {
   slides: Slide[]
 
   @Column({ type:"bit",default:0 })
+  
   featured: boolean
 
   @CreateDateColumn({ type: 'datetime2' })

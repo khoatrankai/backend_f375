@@ -1,15 +1,15 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from "@nestjs/common"
-import type { CreateReportDto } from "src/dto/create-report.dto"
-import type { UpdateReportDto } from "src/dto/update-report.dto"
-import type { CreateCategoryReportDto } from "src/dto/create-category-report.dto"
 import { ReportsService } from "./reports.service";
-
+import { CreateCategoryReportDto } from "src/dto/create-category-report.dto";
+import { CreateReportDto } from "src/dto/create-report.dto";
+import { UpdateReportDto } from "src/dto/update-report.dto";
 @Controller("reports")
 export class ReportsController {
   constructor(private readonly reportsService: ReportsService) {}
 
   @Post()
   create(@Body() createReportDto: CreateReportDto) {
+    console.log(createReportDto) 
     return this.reportsService.create(createReportDto);
   }
 

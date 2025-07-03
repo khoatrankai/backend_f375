@@ -23,9 +23,9 @@ export class NewsService {
   ) {}
 
   async create(createNewsDto: CreateNewsDto) {
-    const categoryActivity = createNewsDto.categoryActivity != "undefined" ? await this.categoryActivityRepository.findOne({ where: { id: createNewsDto.categoryActivity } }) : undefined
-    const region = createNewsDto.region != "undefined" ?  await this.regionRepository.findOne({ where: { id: createNewsDto.region } }):undefined
-    const category = createNewsDto.category != "undefined" ?  await this.categoryNewsRepository.findOne({ where: { id: createNewsDto.category } }):undefined
+    const categoryActivity = createNewsDto.categoryActivity != "undefined" && createNewsDto.categoryActivity ? await this.categoryActivityRepository.findOne({ where: { id: createNewsDto.categoryActivity } }) : undefined
+    const region = createNewsDto.region != "undefined" && createNewsDto.region ?  await this.regionRepository.findOne({ where: { id: createNewsDto.region } }):undefined
+    const category = createNewsDto.category != "undefined"  && createNewsDto.category ?  await this.categoryNewsRepository.findOne({ where: { id: createNewsDto.category } }):undefined
     const news = this.newsRepository.create({ ...createNewsDto, categoryActivity, region, category })
     const result = await this.newsRepository.save(news)
 

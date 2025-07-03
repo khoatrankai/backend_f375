@@ -33,10 +33,10 @@ export class SlidesController {
   @Get()
   findAll(@Query("news") news?: string) {
     if (news) {
-      console.log("lay ra 1")
+      // console.log("lay ra 1")
       return this.slidesService.findByNews(news);
     }
-    console.log("lay ra")
+    // console.log("lay ra")
     return this.slidesService.findAll();
   }
 
