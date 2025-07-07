@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn,CreateDateColumn,UpdateDateColumn  } from "typeorm"
-import { CategoryArticle } from "./category-article.entity"
+import { CategoryArticle } from "./category-article.entity"                                       
 
 export enum ArticleType {
   CCHC = "cchc",
@@ -38,6 +38,8 @@ export class Article {
   )
   @JoinColumn({ name: "category" })
   category: CategoryArticle
+
+  
 
   @Column({ default: false })
   featured: boolean

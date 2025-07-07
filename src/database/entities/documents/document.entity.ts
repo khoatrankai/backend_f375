@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn ,CreateDateColumn,UpdateDateColumn } from "typeorm"
 import { CategoryDocument } from "./category-document.entity"
+import { AgencyDocument } from "./agency-document.entity"
 export enum DocumentType {
   CHI_THI = "chi_thi",
   THONG_BAO = "thong_bao",
@@ -28,6 +29,13 @@ export class Document {
   )
   @JoinColumn({ name: "category" })
   category: CategoryDocument
+
+  @ManyToOne(
+    () => AgencyDocument,
+    (agency) => agency.documents,
+  )
+  @JoinColumn({ name: "agency" })
+  agency: AgencyDocument
 
   @Column({nullable:true, length: 255 })
   organ: string

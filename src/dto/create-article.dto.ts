@@ -26,8 +26,13 @@ export class CreateArticleDto {
   @IsString()
   readTime?: string
 
+  @IsOptional()
   @IsString()
   category?: string
+
+  @IsOptional()
+  @IsString()
+  agency?: string
 
   @IsOptional()
   @IsBoolean()

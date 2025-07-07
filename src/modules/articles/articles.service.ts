@@ -20,7 +20,6 @@ export class ArticlesService {
     const category = await this.categoryArticleRepository.findOne({
       where: { id: createArticleDto.category }
     })
-
     const article = this.articlesRepository.create({ ...createArticleDto, category })
     const result = await this.articlesRepository.save(article)
 
@@ -191,4 +190,6 @@ export class ArticlesService {
       data: category,
     }
   }
+
+  
 }

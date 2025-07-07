@@ -29,6 +29,7 @@ import { Video } from './entities/videos/video.entity';
 import { Region } from './entities/news/region.entity';
 import { Platform } from './entities/softwares/platform.entity';
 import { HistoriesLeader } from './entities/histories/histories-leader.entity';
+import { AgencyDocument } from './entities/documents/agency-document.entity';
 
 @Module({
   imports: [
@@ -64,7 +65,7 @@ import { HistoriesLeader } from './entities/histories/histories-leader.entity';
           password: configService.get<string>('DB_PASSWORD'),
           database: dbName,
           entities: [
-            Platform,HistoriesLeader,CategoryActivity,CategoryDocument,CategoryImage,CategoryNews,CategoryPlatform,CategoryReport,CategoryTrack,CategoryVideo,Award,Document,Group,History,Image,Info,News,Report,Slide,Software,Statistical,Track,User,Video,Region,Article,CategoryArticle
+            Platform,HistoriesLeader,CategoryActivity,CategoryDocument,CategoryImage,CategoryNews,CategoryPlatform,CategoryReport,CategoryTrack,CategoryVideo,Award,Document,Group,History,Image,Info,News,Report,Slide,Software,Statistical,Track,User,Video,Region,Article,CategoryArticle,AgencyDocument
           ],
           // synchronize: true,
           // dropSchema:true,

@@ -5,6 +5,7 @@ import { DocumentsService } from "./documents.service";
 import { CreateCategoryDocumentDto } from "src/dto/create-category-document.dto";
 import { AnyFilesInterceptor } from "@nestjs/platform-express";
 import { customStorageConfig } from "src/lib/multer-upload";
+import { CreateAgencyDocumentDto } from "src/dto/create-agency-document.dto";
 // import { storageDocumentsConfig } from "src/lib/multer-upload";
 
 @Controller("documents")
@@ -48,6 +49,11 @@ export class DocumentsController {
     return this.documentsService.findAllCategories()
   }
 
+  @Get("agency")
+  findAllAgency() {
+    return this.documentsService.findAllAgency()
+  }
+
   @Get(":id")
   findOne(@Param("id") id: string) {
     return this.documentsService.findOne(id);
@@ -86,5 +92,10 @@ export class DocumentsController {
   @Post("categories")
       async createCategory(@Body() createCategoryDto: CreateCategoryDocumentDto) {
         return this.documentsService.createCategory(createCategoryDto)
+      }
+
+      @Post("agency")
+      async createAgency(@Body() createAgencyDto: CreateAgencyDocumentDto) {
+        return this.documentsService.createAgency(createAgencyDto)
       }
 }

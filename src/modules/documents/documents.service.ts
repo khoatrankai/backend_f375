@@ -6,6 +6,8 @@ import { UpdateDocumentDto } from "src/dto/update-document.dto"
 import { CategoryDocument } from "src/database/entities/documents/category-document.entity"
 import { Document, DocumentType } from "src/database/entities/documents/document.entity"
 import { CreateCategoryDocumentDto } from "src/dto/create-category-document.dto"
+import { AgencyDocument } from "src/database/entities/documents/agency-document.entity"
+import { CreateAgencyDocumentDto } from "src/dto/create-agency-document.dto"
 
 @Injectable()
 export class DocumentsService {
@@ -14,6 +16,9 @@ export class DocumentsService {
     private readonly documentsRepository: Repository<Document>,
     @InjectRepository(CategoryDocument)
     private readonly categoryDocumentRepository: Repository<CategoryDocument>,
+    
+    @InjectRepository(AgencyDocument)
+    private readonly agencyDocumentRepository: Repository<AgencyDocument>,
   ) {}
 
   async create(createDocumentDto: CreateDocumentDto) {
@@ -136,6 +141,46 @@ export class DocumentsService {
       statusCode: HttpStatus.CREATED,
       message: 'CategoryDocument created successfully',
       data: result,
+    }
+  }
+
+  async findAllAgency() {
+    const result = await this.agencyDocumentRepository.find({
+      relations: ["documents"],
+    })
+
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'Agency list fetched successfully',
+      data: result,
+    }
+  }
+
+  async createAgency(createAgencyDto: CreateAgencyDocumentDto) {
+    const agency = this.agencyDocumentRepository.create(createAgencyDto)
+    const result = await this.agencyDocumentRepository.save(agency)
+
+    return {
+      statusCode: HttpStatus.CREATED,
+      message: 'Agency created successfully',
+      data: result,
+    }
+  }
+
+  async findOneAgency(id: string) {
+    const category = await this.agencyDocumentRepository.findOne({
+      where: { id },
+      relations: ["documents"],
+    })
+
+    if (!category) {
+      throw new NotFoundException(`Category with ID ${id} not found`)
+    }
+
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'Agency fetched successfully',
+      data: category,
     }
   }
 }
