@@ -43,10 +43,10 @@ export class User {
   @Column({nullable:true, length: 100 })
   experience: string
 
-  @Column({ type: "nvarchar", length: "max" })
+  @Column({ nullable:true,type: "nvarchar", length: "max" })
   education: string
 
-  @Column({ type: "simple-array" })
+  @Column({ nullable:true,type: "simple-array" })
   achievements: string[]
 
   @Column({nullable:true, length: 20 })
